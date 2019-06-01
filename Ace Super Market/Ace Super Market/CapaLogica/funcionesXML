@@ -1,0 +1,929 @@
+﻿using FirmaXadesNet;
+using FirmaXadesNet.Signature.Parameters;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+
+namespace Ace_Super_Market.CapaLogica
+{
+    class funcionesXML
+    {
+
+        Boolean result = false;
+
+        public void generarXMLFactura(Dictionary<String,String> Dclave, Dictionary<String, String> Dcliente,
+                                        List<String> codigoProducto, List<String> precioProducto, List<String> cantidad, List<String> total, List<String> tipoProducto,
+                                        List<String> nombreProducto,List<String> unidadMedida)
+        {
+
+            String Clave = Dclave["codigopais"] + Dclave["dia"] + Dclave["mes"] + Dclave["anno"] + Dclave["identificacion"] + Dclave["consecutivo"] + Dclave["situacioncomprobante"] + Dclave["codigoseguridad"];
+            DateTime thisDay = DateTime.Today;
+            String[] codUbicacion = Dcliente["codigoClienteF"].Split(',');
+
+
+
+            XDocument doc = new XDocument();
+
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
+            XNamespace xmlns = "https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica";
+            XNamespace schemaLocation = "https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica.xsd";
+
+
+            XElement raiz = new XElement(xmlns + "FacturaElectronica");
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsi", xsi);
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsd", xsd);
+            raiz.SetAttributeValue(XNamespace.Xmlns + "schemaLocation", schemaLocation);
+            raiz.SetAttributeValue("xmlns", xmlns);
+            XElement clave = new XElement(xmlns + "Clave", Clave);
+            raiz.Add(clave);
+            XElement NumeroConsecutivo = new XElement(xmlns + "NumeroConsecutivo", Dclave["consecutivo"]);
+            raiz.Add(NumeroConsecutivo);
+            XElement FechaEmision = new XElement(xmlns + "FechaEmision", thisDay.ToString("yyyy-MM-dd")+"T"+ DateTime.Now.ToString("HH:mm:ss"));
+            raiz.Add(FechaEmision);
+            XElement Emisor = new XElement(xmlns + "Emisor",
+                                new XElement(xmlns + "Nombre", "ACESERVICES SOCIEDAD ANONIMA"),
+                                new XElement(xmlns + "Identificacion",
+                                    new XElement(xmlns + "Tipo", "02"),
+                                    new XElement(xmlns + "Numero", "3101769387")),
+                                new XElement(xmlns + "NombreComercial", "Ace Super Market"),
+                                new XElement(xmlns + "Ubicacion",
+                                    new XElement(xmlns + "Provincia", "6"),
+                                    new XElement(xmlns + "Canton", "05"),
+                                    new XElement(xmlns + "Distrito", "01"),
+                                    new XElement(xmlns + "Barrio", "01"),
+                                    new XElement(xmlns + "OtrasSenas", "Calle del Comercio, Frente a Tienda el Aterrizaje")),
+                                new XElement(xmlns + "Telefono",
+                                    new XElement(xmlns + "CodigoPais", "506"),
+                                    new XElement(xmlns + "NumTelefono", "85221875")),
+                                new XElement(xmlns + "Fax",
+                                    new XElement(xmlns + "CodigoPais", "0"),
+                                    new XElement(xmlns + "NumTelefono", "0")),
+                                new XElement(xmlns + "CorreoElectronico", "info@aceservicex.com"));
+            raiz.Add(Emisor);
+
+            XElement Receptor = new XElement(xmlns + "Receptor",
+                                new XElement(xmlns + "Nombre", Dcliente["nombreCliente"]),
+                                new XElement(xmlns + "Identificacion",
+                                    new XElement(xmlns + "Tipo", Dcliente["tipoIdentificacion"]),
+                                    new XElement(xmlns + "Numero", Dcliente["identificacion"])),
+                                new XElement(xmlns + "IdentificacionExtranjero", "N/A"),
+                                new XElement(xmlns + "NombreComercial", Dcliente["nombreCliente"]),
+                                new XElement(xmlns + "Ubicacion",
+                                    new XElement(xmlns + "Provincia", codUbicacion[0]),
+                                    new XElement(xmlns + "Canton", codUbicacion[1]),
+                                    new XElement(xmlns + "Distrito", codUbicacion[2]),
+                                    new XElement(xmlns + "Barrio", codUbicacion[3]),
+                                    new XElement(xmlns + "OtrasSenas", Dcliente["direccion"])),
+                                new XElement(xmlns + "Telefono",
+                                    new XElement(xmlns + "CodigoPais", "506"),
+                                    new XElement(xmlns + "NumTelefono", Dcliente["telefono"])),
+                                new XElement(xmlns + "CorreoElectronico", Dcliente["email"]));
+            raiz.Add(Receptor);
+
+            XElement CondicionVenta = new XElement(xmlns + "CondicionVenta", "01");
+            raiz.Add(CondicionVenta);
+
+            XElement MedioPago = new XElement(xmlns + "MedioPago", "01");
+            raiz.Add(MedioPago);
+
+            XElement DetalleServicio = new XElement(xmlns + "DetalleServicio");
+            for (int a = 0;a<codigoProducto.Count;a++)
+            {
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    DetalleServicio.Add(new XElement(xmlns + "LineaDetalle",
+                                 new XElement(xmlns + "NumeroLinea", a + 1),
+                                 new XElement(xmlns + "Codigo",
+                                     new XElement(xmlns + "Tipo", "01"),
+                                     new XElement(xmlns + "Codigo", codigoProducto[a])),
+                             new XElement(xmlns + "Cantidad", cantidad[a]),
+                             new XElement(xmlns + "UnidadMedida", unidadMedida[a]),
+                             new XElement(xmlns + "Detalle", nombreProducto[a]),
+                             new XElement(xmlns + "PrecioUnitario", (double.Parse(precioProducto[a])-(double.Parse(precioProducto[a])*0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "MontoTotal", (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "SubTotal", (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "Impuesto",
+                                  new XElement(xmlns + "Codigo", "01"),
+                                  new XElement(xmlns + "Tarifa", "13.00"),
+                                  new XElement(xmlns + "Monto", ((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13).ToString("00.00", CultureInfo.InvariantCulture))),
+                            new XElement(xmlns + "MontoTotalLinea", (((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13)+ (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115))).ToString("00.00", CultureInfo.InvariantCulture))));
+
+                }
+                else
+                {
+                    DetalleServicio.Add( new XElement(xmlns + "LineaDetalle",
+                                new XElement(xmlns + "NumeroLinea", a + 1),
+                                new XElement(xmlns + "Codigo",
+                                    new XElement(xmlns + "Tipo", "01"),
+                                    new XElement(xmlns + "Codigo", codigoProducto[a])),
+                            new XElement(xmlns + "Cantidad", cantidad[a]),
+                            new XElement(xmlns + "UnidadMedida", unidadMedida[a]),
+                            new XElement(xmlns + "Detalle", nombreProducto[a]),
+                            new XElement(xmlns + "PrecioUnitario", precioProducto[a]),
+                            new XElement(xmlns + "MontoTotal", total[a]),
+                            new XElement(xmlns + "SubTotal", total[a]),
+                                new XElement(xmlns + "MontoTotalLinea", total[a])));
+
+
+
+                }
+
+                
+            }
+
+            raiz.Add(DetalleServicio);
+            double totalGR = 0;
+            double totalEX = 0;
+            double totalIM = 0;
+            for (int a = 0;a<tipoProducto.Count;a++)
+            {
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    totalGR = totalGR + double.Parse(total[a])-(double.Parse(total[a])*0.115);
+                    totalIM = totalIM + ((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13);
+                }
+                else
+                {
+                    totalEX = totalEX +double.Parse(total[a]);
+                }
+
+            }
+
+            XElement ResumenFactura = new XElement(xmlns + "ResumenFactura",
+                                          new XElement(xmlns + "CodigoMoneda", "CRC"),
+                                          new XElement(xmlns + "TipoCambio", "562.00"),
+                                          new XElement(xmlns + "TotalServGravados", "0"),
+                                          new XElement(xmlns + "TotalServExentos", "0.00"),
+                                          new XElement(xmlns + "TotalMercanciasGravadas", totalGR.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalMercanciasExentas", totalEX),
+                                          new XElement(xmlns + "TotalGravado", totalGR.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalExento", totalEX),
+                                          new XElement(xmlns + "TotalVenta", (totalEX+totalGR).ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalDescuentos", "0"),
+                                          new XElement(xmlns + "TotalVentaNeta", (totalEX + totalGR).ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalImpuesto", totalIM.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalComprobante", (totalEX + totalGR+totalIM).ToString("00.00", CultureInfo.InvariantCulture)));
+            raiz.Add(ResumenFactura);
+
+            XElement Normativa = new XElement(xmlns + "Normativa",
+                                    new XElement(xmlns + "NumeroResolucion", "DGT-R-48-2016"),
+                                    new XElement(xmlns + "FechaResolucion", "07-10-2016 00:00:00"));
+            raiz.Add(Normativa);
+
+            XElement Otros = new XElement(xmlns + "Otros",
+                        new XElement(xmlns + "OtroTexto", "N.A."));
+            raiz.Add(Otros);
+
+
+            doc.Add(raiz);
+
+            String pathFactura = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLSinFirma\FacturaSF" + Dclave["consecutivo"] + ".xml";
+            doc.Save(pathFactura);
+
+            CapaLogica.gestor objG = new gestor();
+            String XMLFirmado = firmadoFactura(pathFactura, Dclave["consecutivo"]);
+
+            String XMLCodificado = XMLtoBase64(XMLFirmado);
+
+            envioFacturaXML(XMLCodificado,objG.optenerToken(), Clave, thisDay.ToString("yyyy-MM-ddTHH:mm:ss"),
+                                                               Dcliente["tipoIdentificacion"], Dcliente["identificacion"]);
+
+              ConsultaEstatus(Clave, objG.optenerToken(), Dclave["consecutivo"]);
+
+            String pathMensaje = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLMensajeHacienda\MensaHacienda" + Dclave["consecutivo"] + ".xml";
+            String FacturaFirmada = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLFirmados\FacturaCF" + Dclave["consecutivo"] + ".xml";
+
+
+            String pathPDF = generarPDF(Clave, Dclave["consecutivo"], Dcliente, precioProducto, cantidad, total, nombreProducto, tipoProducto);
+
+
+            if (result == true)
+            {
+                sendCorreo(FacturaFirmada, pathMensaje,pathPDF,Dcliente, Dclave["consecutivo"]);
+            }
+            else
+            {
+
+            }
+
+
+        }
+
+        public String firmadoFactura(String ppathArchivo,String pconsecutivo)
+        {
+            String pathCert = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\Certificado\310176938728.p12";
+            X509Certificate2 certificado = new X509Certificate2(pathCert, "1502");
+            XadesService xadesService = new XadesService();
+            SignatureParameters parametros = new SignatureParameters();
+            parametros.SignaturePolicyInfo = new SignaturePolicyInfo();
+            parametros.SignaturePolicyInfo.PolicyIdentifier =
+            "https://tribunet.hacienda.go.cr/docs/esquemas/2016/v4.1/Resolucion_Comprobantes_Electronicos_DGT-R-48-2016.pdf";
+            parametros.SignaturePolicyInfo.PolicyHash = "Ohixl6upD6av8N7pEvDABhEL6hM=";
+            parametros.SignaturePackaging = SignaturePackaging.ENVELOPED;
+            parametros.DataFormat = new FirmaXadesNet.Signature.Parameters.DataFormat();
+            parametros.Signer = new FirmaXadesNet.Crypto.Signer(certificado);
+            FileStream fs = new FileStream((ppathArchivo), FileMode.Open);
+            FirmaXadesNet.Signature.SignatureDocument docFirmado = xadesService.Sign(fs, parametros);
+            String XMLFirmado = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLFirmados\FacturaCF" + pconsecutivo + ".xml";
+            docFirmado.Save((XMLFirmado));
+
+            return XMLFirmado;
+        }
+
+        public String XMLtoBase64(String ppathArchivo)
+        {
+            byte[] arrayDeBytes = System.IO.File.ReadAllBytes(ppathArchivo);
+            string codificado = Convert.ToBase64String(arrayDeBytes);
+
+            return codificado;
+        }
+
+        static async void envioFacturaXML(String xmlcodificado,String token,String Clave,String fecha, String tipoidentifiacion,String numidentificacion)
+        {
+
+            string URL_RECEPCION = "https://api.comprobanteselectronicos.go.cr/recepcion/v1/";
+
+            HttpClient http = new HttpClient();
+            Newtonsoft.Json.Linq.JObject JsonObject = new Newtonsoft.Json.Linq.JObject();
+            JsonObject.Add(new JProperty("clave", Clave));
+            JsonObject.Add(new JProperty("fecha", fecha));
+            JsonObject.Add(new JProperty("emisor",
+                                         new JObject(new JProperty("tipoIdentificacion", "02"),
+                                                     new JProperty("numeroIdentificacion", "3101769387"))));
+
+
+            JsonObject.Add(new JProperty("receptor",
+                                     new JObject(new JProperty("tipoIdentificacion", tipoidentifiacion),
+                                                 new JProperty("numeroIdentificacion", numidentificacion))));
+
+
+            JsonObject.Add(new JProperty("comprobanteXml", xmlcodificado));
+
+
+
+            StringContent oString = new StringContent(JsonObject.ToString());
+
+            http.DefaultRequestHeaders.Add("Authorization", ("Bearer " + token));
+
+            HttpResponseMessage response = http.PostAsync((URL_RECEPCION + "recepcion"), oString).Result;
+            string res = await response.Content.ReadAsStringAsync();
+
+            object Localizacion = response.StatusCode;
+
+   
+
+            http = new HttpClient();
+            http.DefaultRequestHeaders.Add("authorization", ("Bearer " + token));
+            response = http.GetAsync((URL_RECEPCION + ("recepcion/" + Clave))).Result;
+            res = await response.Content.ReadAsStringAsync();
+            String a = res;
+
+            CapaLogica.RespuestaHacienda RH = Newtonsoft.Json.JsonConvert.DeserializeObject<CapaLogica.RespuestaHacienda>(a);
+
+            JObject json = JObject.Parse(res);
+       
+        }
+
+        public async void ConsultaEstatus(String clave, String token,String consecutivo)
+        {
+
+            try
+            {
+                string URL_RECEPCION = "https://api.comprobanteselectronicos.go.cr/recepcion/v1/";
+                HttpClient http = new HttpClient();
+
+                http.DefaultRequestHeaders.Add("authorization", ("Bearer " + token));
+
+                HttpResponseMessage response = http.GetAsync((URL_RECEPCION + ("recepcion/" + clave))).Result;
+                string res = await response.Content.ReadAsStringAsync();
+
+                object Localizacion = response.StatusCode;
+
+
+
+                CapaLogica.RespuestaHacienda RH = Newtonsoft.Json.JsonConvert.DeserializeObject<CapaLogica.RespuestaHacienda>(res);
+
+                if (RH.ind_estado.Equals("procesando"))
+                {
+                    ConsultaEstatus(clave, token, consecutivo);
+                }
+                else
+                {
+
+                    JObject json = JObject.Parse(res);
+                    token = json.GetValue("respuesta-xml").ToString();
+                    byte[] myBase64ret = Convert.FromBase64String(token);
+                    string myStr = System.Text.Encoding.UTF8.GetString(myBase64ret);
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(myStr);
+
+
+                    String XMLMEnsajeHacienda = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLMensajeHacienda\MensaHacienda" + consecutivo + ".xml";
+                    String XMLMEnsajeHaciendaError = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLMensajeHaciendaError\MensaHaciendaError" + consecutivo + ".xml";
+                    if (RH.ind_estado.Equals("aceptado"))
+                    {
+                        xmlDoc.Save(XMLMEnsajeHacienda);
+                        result = true;
+                        if (RH.ind_estado.Equals("rechazado"))
+                        {
+                            xmlDoc.Save(XMLMEnsajeHaciendaError);
+                            result = false;
+                        }
+
+                    }
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        public String generarPDF(String clave,String pconsecutivo, Dictionary<String, String> Dcliente,List<String> precioProducto, List<String> cantidad, List<String> total,List<String> nombreProducto,
+                               List<String> tipoProducto)
+        {
+            Document doc = new Document(PageSize.LETTER);
+            String pathPDF = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\PDFFactura\FacturaPDF" + pconsecutivo + ".pdf";
+            PdfWriter writer = PdfWriter.GetInstance(doc,
+                            new FileStream(pathPDF, FileMode.Create));
+
+            DateTime thisDay = DateTime.Today;
+
+            doc.AddTitle("Factura Electronica"+ pconsecutivo);
+
+            doc.Open();
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            // Escribimos el encabezamiento en el documento
+
+            Paragraph lblfecha = new Paragraph("Fecha");
+            lblfecha.Alignment = Element.ALIGN_RIGHT;
+            Paragraph fecha = new Paragraph(thisDay.ToString("yyyy-MM-dd"));
+            fecha.Alignment = Element.ALIGN_RIGHT;
+
+            doc.Add(lblfecha);
+            doc.Add(fecha);
+
+
+            Paragraph nombre = new Paragraph("ACESERVICES SOCIEDAD ANONIMA");
+            nombre.Alignment = Element.ALIGN_CENTER;
+            Paragraph identificacion = new Paragraph("RUC / NIT : 601950392");
+            identificacion.Alignment = Element.ALIGN_CENTER;
+            Paragraph Direccion = new Paragraph("Direccion : Calle del Comercio, Frente a Tienda el Aterrizaje");
+            Direccion.Alignment = Element.ALIGN_CENTER;
+            Paragraph Telefono = new Paragraph("Telefono : 85221875");
+            Telefono.Alignment = Element.ALIGN_CENTER;
+            Paragraph Email = new Paragraph("Email : info@aceservicex.com");
+            Email.Alignment = Element.ALIGN_CENTER;
+
+
+            doc.Add(nombre);
+            doc.Add(identificacion);
+            doc.Add(Direccion);
+            doc.Add(Telefono);
+            doc.Add(Email);
+            doc.Add(Chunk.NEWLINE);
+
+            // Creamos una tabla que contendrá el nombre, apellido y país
+            // de nuestros visitante.
+            PdfPTable tblPrueba = new PdfPTable(4);
+            tblPrueba.WidthPercentage = 100;
+
+            // Configuramos el título de las columnas de la tabla
+            PdfPCell clCloiente = new PdfPCell(new Phrase("Cliente : "+ Dcliente["nombreCliente"], _standardFont));
+            clCloiente.BorderWidth = 0;
+            clCloiente.BorderWidthBottom = 0.75f;
+
+            PdfPCell clCedula = new PdfPCell(new Phrase("Cédula : "+Dcliente["identificacion"], _standardFont));
+            clCedula.BorderWidth = 0;
+            clCedula.BorderWidthBottom = 0.75f;
+
+            PdfPCell clPais = new PdfPCell(new Phrase("País: COSTA RICA", _standardFont));
+            clPais.BorderWidth = 0;
+            clPais.BorderWidthBottom = 0.75f;
+
+            PdfPCell clContado = new PdfPCell(new Phrase("Contado", _standardFont));
+            clContado.BorderWidth = 0;
+            clContado.BorderWidthBottom = 0.75f;
+
+            // Añadimos las celdas a la tabla
+            tblPrueba.AddCell(clCloiente);
+            tblPrueba.AddCell(clCedula);
+            tblPrueba.AddCell(clPais);
+            tblPrueba.AddCell(clContado);
+
+            PdfPTable tblProductos = new PdfPTable(4);
+            tblPrueba.WidthPercentage = 100;
+
+            PdfPCell clCantidad = new PdfPCell(new Phrase("Cantidad : ", _standardFont));
+            clCloiente.BorderWidth = 0;
+            clCloiente.BorderWidthBottom = 0.75f;
+
+            PdfPCell clArticulo = new PdfPCell(new Phrase("Articulo", _standardFont));
+            clCedula.BorderWidth = 0;
+            clCedula.BorderWidthBottom = 0.75f;
+
+            PdfPCell clPU = new PdfPCell(new Phrase("Precio Unitario", _standardFont));
+            clPais.BorderWidth = 0;
+            clPais.BorderWidthBottom = 0.75f;
+
+            PdfPCell clTotal = new PdfPCell(new Phrase("Total", _standardFont));
+            clContado.BorderWidth = 0;
+            clContado.BorderWidthBottom = 0.75f;
+
+            tblProductos.AddCell(clCantidad);
+            tblProductos.AddCell(clArticulo);
+            tblProductos.AddCell(clPU);
+            tblProductos.AddCell(clTotal);
+
+            // Llenamos la tabla con información
+            for (int a = 0; a < cantidad.Count; a++)
+            {
+                clCantidad = new PdfPCell(new Phrase(cantidad[a], _standardFont));
+                clCantidad.BorderWidth = 0;
+
+                clArticulo = new PdfPCell(new Phrase(nombreProducto[a], _standardFont));
+                clArticulo.BorderWidth = 0;
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    String precio = (double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture);
+                    clPU = new PdfPCell(new Phrase(precio, _standardFont));
+                    clPU.BorderWidth = 0;
+                    String totall = ((double.Parse(precio)) * double.Parse(cantidad[a])).ToString("00.00", CultureInfo.InvariantCulture);
+                    clTotal = new PdfPCell(new Phrase(totall, _standardFont));
+
+                }
+                else
+                {
+                    String precio = (double.Parse(precioProducto[a])).ToString("00.00", CultureInfo.InvariantCulture);
+                    clPU = new PdfPCell(new Phrase(precio, _standardFont));
+                    clPU.BorderWidth = 0;
+                    String totall = ((double.Parse(precio)) * double.Parse(cantidad[a])).ToString("00.00", CultureInfo.InvariantCulture);
+                    clTotal = new PdfPCell(new Phrase(totall, _standardFont));
+
+                }
+
+                clTotal.BorderWidth = 0;
+
+                // Añadimos las celdas a la tabla
+                tblProductos.AddCell(clCantidad);
+                tblProductos.AddCell(clArticulo);
+                tblProductos.AddCell(clPU);
+                tblProductos.AddCell(clTotal);
+            }
+            double totalGR = 0;
+            double totalEX = 0;
+            double totalIM = 0;
+            for (int a = 0; a < cantidad.Count; a++)
+            {
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    totalGR = totalGR + double.Parse(total[a]) - (double.Parse(total[a]) * 0.115);
+                    totalIM = totalIM + ((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13);
+                }
+                else
+                {
+                    totalEX = totalEX + double.Parse(total[a]);
+                }
+
+            }
+
+            Paragraph descuento = new Paragraph("DESCUENTO" + "     " + "0");
+            descuento.Alignment = Element.ALIGN_RIGHT;
+            Paragraph sub = new Paragraph("SUB-TOTAL" + "     " + ((totalGR + totalEX)-totalIM).ToString("00.00", CultureInfo.InvariantCulture));
+            sub.Alignment = Element.ALIGN_RIGHT;
+            Paragraph imp = new Paragraph("IMP-VENTA" + "     " + (totalIM).ToString("00.00", CultureInfo.InvariantCulture));
+            imp.Alignment = Element.ALIGN_RIGHT;
+            Paragraph tota = new Paragraph("TOTAL" + "     " + (totalGR+totalEX+totalIM).ToString("00.00", CultureInfo.InvariantCulture));
+            tota.Alignment = Element.ALIGN_RIGHT;
+
+
+
+
+            Paragraph observaciones = new Paragraph("OBSERVACIONES");
+            observaciones.Alignment = Element.ALIGN_CENTER;
+
+            Paragraph txtobservaciones = new Paragraph("-------");
+            txtobservaciones.Alignment = Element.ALIGN_CENTER;
+
+            Paragraph FE = new Paragraph("Factura Electrónica : "+pconsecutivo);
+
+            Paragraph Clave = new Paragraph("Clave Factura Electrónica : "+clave);
+
+
+            Paragraph formaPago = new Paragraph("Forma de Pago: Efectivo");
+
+
+            Paragraph agrade = new Paragraph("¡GRACIAS POR SU COMPRA!");
+            agrade.Alignment = Element.ALIGN_CENTER;
+
+            Paragraph autori = new Paragraph("Autorizada mediante resolución Nº DGT-R-48-2016 del 7 de octubre de 2016");
+            autori.Alignment = Element.ALIGN_CENTER;
+
+
+            doc.Add(tblPrueba);
+            doc.Add(tblProductos);
+            doc.Add(descuento);
+            doc.Add(sub);
+            doc.Add(imp);
+            doc.Add(tota);
+            doc.Add(observaciones);
+            doc.Add(txtobservaciones);
+            doc.Add(FE);
+            doc.Add(Clave);
+            doc.Add(formaPago);
+            doc.Add(agrade);
+            doc.Add(autori);
+
+            doc.Close();
+            writer.Close();
+
+            return pathPDF;
+        }
+
+
+        public void sendCorreo(String pathFactura,String pathMensaje,String pathPDF, Dictionary<String, String> Dcliente,String consecutivo)
+        {
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.To.Add(Dcliente["email"]);
+            msg.Subject = "ACE SUPER MARKET : Factura Electrónica #"+consecutivo;
+            msg.SubjectEncoding = System.Text.Encoding.UTF8;
+            msg.Body = "Estimado cliente."+ Dcliente["nombreCliente"]+
+                        "Reciba un cordial saludo de ACE SUPER MARKET."+
+                        "Adjunto encontrara su factura electrónica #"+consecutivo+"."+
+                        "Gracias por preferirnos, saludos cordiales.";
+            msg.BodyEncoding = System.Text.Encoding.UTF8;
+            msg.IsBodyHtml = false;
+            System.Net.Mail.Attachment PDF = new System.Net.Mail.Attachment(pathPDF);
+            msg.Attachments.Add(PDF);
+            System.Net.Mail.Attachment Factura = new System.Net.Mail.Attachment(pathFactura);
+            msg.Attachments.Add(Factura);
+            System.Net.Mail.Attachment MensajeHacienda = new System.Net.Mail.Attachment(pathMensaje);
+            msg.Attachments.Add(MensajeHacienda);
+            msg.From = new System.Net.Mail.MailAddress("ventas@aceservicex.com");
+
+
+            System.Net.Mail.SmtpClient cliente = new System.Net.Mail.SmtpClient("mail.aceservicex.com ", 2525);
+            cliente.UseDefaultCredentials = false;
+            cliente.Credentials = new System.Net.NetworkCredential("ventas@aceservicex.com", "Ventas.2019");
+
+
+
+            try
+            {
+                cliente.Send(msg);
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        public Boolean crearRespuestaXML(Dictionary<String,String> DdatosFactura)
+        {
+            XDocument doc = new XDocument();
+
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
+            XNamespace xmlns = "https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/mensajeReceptor";
+
+
+            XElement raiz = new XElement(xmlns + "MensajeReceptor");
+            raiz.SetAttributeValue("xmlns", xmlns);
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsd", xsd);
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsi", xsi);
+
+            
+
+            XElement clave = new XElement(xmlns + "Clave", DdatosFactura["clave"]);
+            raiz.Add(clave);
+
+            XElement NumeroCedulaEmisor = new XElement(xmlns+ "NumeroCedulaEmisor",DdatosFactura["numerocedulaemisor"]);
+            raiz.Add(NumeroCedulaEmisor);
+
+            XElement FechaEmisionDoc = new XElement(xmlns+ "FechaEmisionDoc",DdatosFactura["fechaemisiondoc"]);
+            raiz.Add(FechaEmisionDoc);
+
+            XElement Mensaje = new XElement(xmlns+ "Mensaje",DdatosFactura["mensaje"]);
+            raiz.Add(Mensaje);
+
+            XElement DetalleMensaje = new XElement(xmlns + "DetalleMensaje", DdatosFactura["detallemensaje"]);
+            raiz.Add(DetalleMensaje);
+
+            XElement MontoTotalImpuesto = new XElement(xmlns + "MontoTotalImpuesto", DdatosFactura["montototalimpuesto"]);
+            raiz.Add(MontoTotalImpuesto);
+
+            XElement TotalFactura = new XElement(xmlns + "TotalFactura", DdatosFactura["totalfactura"]);
+            raiz.Add(TotalFactura);
+
+            XElement NumeroCedulaReceptor = new XElement(xmlns + "NumeroCedulaReceptor", DdatosFactura["numerocedulareceptor"]);
+            raiz.Add(NumeroCedulaReceptor);
+
+            XElement NumeroConsecutivoReceptor = new XElement(xmlns + "NumeroConsecutivoReceptor", DdatosFactura["numeroconsecutivoreceptor"]);
+            raiz.Add(NumeroConsecutivoReceptor);
+
+            doc.Add(raiz);
+            String pathMensajeReceptor = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLSinFirma\MensajeReceptorSF" + DdatosFactura["numeroconsecutivoreceptor"] + ".xml";
+            doc.Save(pathMensajeReceptor);
+            
+
+           String apthMensajeReceptorFirmado =  firmadoMensajeReceptor(pathMensajeReceptor, DdatosFactura["numeroconsecutivoreceptor"]);
+
+            String xmlMensajeReceptorCodificado = XMLtoBase64(apthMensajeReceptorFirmado);
+            CapaLogica.gestor objG = new gestor();
+            envioMensajeReceptorXML(xmlMensajeReceptorCodificado, objG.optenerToken(),DdatosFactura);
+
+            return true;
+        }
+
+        public String firmadoMensajeReceptor(String ppathArchivo, String pconsecutivo)
+        {
+            String pathCert = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\Certificado\310176938728.p12";
+            X509Certificate2 certificado = new X509Certificate2(pathCert, "1502");
+            XadesService xadesService = new XadesService();
+            SignatureParameters parametros = new SignatureParameters();
+            parametros.SignaturePolicyInfo = new SignaturePolicyInfo();
+            parametros.SignaturePolicyInfo.PolicyIdentifier =
+            "https://tribunet.hacienda.go.cr/docs/esquemas/2016/v4.1/Resolucion_Comprobantes_Electronicos_DGT-R-48-2016.pdf";
+            parametros.SignaturePolicyInfo.PolicyHash = "Ohixl6upD6av8N7pEvDABhEL6hM=";
+            parametros.SignaturePackaging = SignaturePackaging.ENVELOPED;
+            parametros.DataFormat = new FirmaXadesNet.Signature.Parameters.DataFormat();
+            parametros.Signer = new FirmaXadesNet.Crypto.Signer(certificado);
+            FileStream fs = new FileStream((ppathArchivo), FileMode.Open);
+            FirmaXadesNet.Signature.SignatureDocument docFirmado = xadesService.Sign(fs, parametros);
+            String XMLFirmado = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLFirmados\MensajeReceptorCF" + pconsecutivo + ".xml";
+            docFirmado.Save((XMLFirmado));
+
+            return XMLFirmado;
+        }
+
+        static async void envioMensajeReceptorXML(String xmlcodificado, String token,Dictionary<String,String> DdatosFactura)
+        {
+
+            
+            string URL_RECEPCION = "https://api.comprobanteselectronicos.go.cr/recepcion/v1/";
+
+            HttpClient http = new HttpClient();
+            Newtonsoft.Json.Linq.JObject JsonObject = new Newtonsoft.Json.Linq.JObject();
+            JsonObject.Add(new JProperty("clave", DdatosFactura["clave"]));
+            JsonObject.Add(new JProperty("fecha", DdatosFactura["fechaemisiondoc"]));
+            JsonObject.Add(new JProperty("emisor",
+                                         new JObject(new JProperty("tipoIdentificacion", DdatosFactura["tipoidentificacion"]),
+                                                     new JProperty("numeroIdentificacion", DdatosFactura["numerocedulaemisor"]))));
+
+
+            JsonObject.Add(new JProperty("receptor",
+                                     new JObject(new JProperty("tipoIdentificacion", "02"),
+                                                 new JProperty("numeroIdentificacion", DdatosFactura["numerocedulareceptor"]))));
+
+            JsonObject.Add(new JProperty("consecutivoReceptor", DdatosFactura["numeroconsecutivoreceptor"]));
+
+
+            JsonObject.Add(new JProperty("comprobanteXml", xmlcodificado));
+
+            MessageBox.Show(JsonObject.ToString());
+
+            StringContent oString = new StringContent(JsonObject.ToString());
+
+            http.DefaultRequestHeaders.Add("Authorization", ("Bearer " + token));
+
+            HttpResponseMessage response = http.PostAsync((URL_RECEPCION + "recepcion"), oString).Result;
+            string res = await response.Content.ReadAsStringAsync();
+
+            object Localizacion = response.StatusCode;
+
+            MessageBox.Show(Localizacion.ToString());
+
+           /* CapaLogica.RespuestaHacienda RH = Newtonsoft.Json.JsonConvert.DeserializeObject<CapaLogica.RespuestaHacienda>(res);
+
+            MessageBox.Show(RH.ind_estado);*/
+
+        }
+
+
+        public void generarXMLTiquete(Dictionary<String, String> Dclave, Dictionary<String, String> Dcliente,
+                                        List<String> codigoProducto, List<String> precioProducto, List<String> cantidad, List<String> total, List<String> tipoProducto,
+                                        List<String> nombreProducto, List<String> unidadMedida)
+        {
+
+            String Clave = Dclave["codigopais"] + Dclave["dia"] + Dclave["mes"] + Dclave["anno"] + Dclave["identificacion"] + Dclave["consecutivo"] + Dclave["situacioncomprobante"] + Dclave["codigoseguridad"];
+            DateTime thisDay = DateTime.Today;
+
+
+
+            XDocument doc = new XDocument();
+
+            XNamespace xsi = "http://www.w3.org/2001/XMLSchema-instance";
+            XNamespace xsd = "http://www.w3.org/2001/XMLSchema";
+            XNamespace xmlns = "https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/tiqueteElectronico";
+           
+
+
+            XElement raiz = new XElement(xmlns + "TiqueteElectronico");
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsi", xsi);
+            raiz.SetAttributeValue(XNamespace.Xmlns + "xsd", xsd);
+            raiz.SetAttributeValue("xmlns", xmlns);
+            XElement clave = new XElement(xmlns + "Clave", Clave);
+            raiz.Add(clave);
+            XElement NumeroConsecutivo = new XElement(xmlns + "NumeroConsecutivo", Dclave["consecutivo"]);
+            raiz.Add(NumeroConsecutivo);
+            XElement FechaEmision = new XElement(xmlns + "FechaEmision", thisDay.ToString("yyyy-MM-dd") + "T" + DateTime.Now.ToString("HH:mm:ss"));
+            raiz.Add(FechaEmision);
+            XElement Emisor = new XElement(xmlns + "Emisor",
+                                new XElement(xmlns + "Nombre", "ACESERVICES SOCIEDAD ANONIMA"),
+                                new XElement(xmlns + "Identificacion",
+                                    new XElement(xmlns + "Tipo", "02"),
+                                    new XElement(xmlns + "Numero", "3101769387")),
+                                new XElement(xmlns + "NombreComercial", "Ace Super Market"),
+                                new XElement(xmlns + "Ubicacion",
+                                    new XElement(xmlns + "Provincia", "6"),
+                                    new XElement(xmlns + "Canton", "05"),
+                                    new XElement(xmlns + "Distrito", "01"),
+                                    new XElement(xmlns + "Barrio", "01"),
+                                    new XElement(xmlns + "OtrasSenas", "Calle del Comercio, Frente a Tienda el Aterrizaje")),
+                                new XElement(xmlns + "Telefono",
+                                    new XElement(xmlns + "CodigoPais", "506"),
+                                    new XElement(xmlns + "NumTelefono", "85221875")),
+                                new XElement(xmlns + "Fax",
+                                    new XElement(xmlns + "CodigoPais", "0"),
+                                    new XElement(xmlns + "NumTelefono", "0")),
+                                new XElement(xmlns + "CorreoElectronico", "info@aceservicex.com"));
+            raiz.Add(Emisor);
+
+
+            XElement CondicionVenta = new XElement(xmlns + "CondicionVenta", "01");
+            raiz.Add(CondicionVenta);
+
+            XElement MedioPago = new XElement(xmlns + "MedioPago", "01");
+            raiz.Add(MedioPago);
+
+            XElement DetalleServicio = new XElement(xmlns + "DetalleServicio");
+            for (int a = 0; a < codigoProducto.Count; a++)
+            {
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    DetalleServicio.Add(new XElement(xmlns + "LineaDetalle",
+                                 new XElement(xmlns + "NumeroLinea", a + 1),
+                                 new XElement(xmlns + "Codigo",
+                                     new XElement(xmlns + "Tipo", "01"),
+                                     new XElement(xmlns + "Codigo", codigoProducto[a])),
+                             new XElement(xmlns + "Cantidad", cantidad[a]),
+                             new XElement(xmlns + "UnidadMedida", unidadMedida[a]),
+                             new XElement(xmlns + "Detalle", nombreProducto[a]),
+                             new XElement(xmlns + "PrecioUnitario", (double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "MontoTotal", (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "SubTotal", (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115)).ToString("00.00", CultureInfo.InvariantCulture)),
+                             new XElement(xmlns + "Impuesto",
+                                  new XElement(xmlns + "Codigo", "01"),
+                                  new XElement(xmlns + "Tarifa", "13.00"),
+                                  new XElement(xmlns + "Monto", ((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13).ToString("00.00", CultureInfo.InvariantCulture))),
+                            new XElement(xmlns + "MontoTotalLinea", (((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13) + (double.Parse(total[a]) - (double.Parse(total[a]) * 0.115))).ToString("00.00", CultureInfo.InvariantCulture))));
+
+                }
+                else
+                {
+                    DetalleServicio.Add(new XElement(xmlns + "LineaDetalle",
+                                new XElement(xmlns + "NumeroLinea", a + 1),
+                                new XElement(xmlns + "Codigo",
+                                    new XElement(xmlns + "Tipo", "01"),
+                                    new XElement(xmlns + "Codigo", codigoProducto[a])),
+                            new XElement(xmlns + "Cantidad", cantidad[a]),
+                            new XElement(xmlns + "UnidadMedida", unidadMedida[a]),
+                            new XElement(xmlns + "Detalle", nombreProducto[a]),
+                            new XElement(xmlns + "PrecioUnitario", precioProducto[a]),
+                            new XElement(xmlns + "MontoTotal", total[a]),
+                            new XElement(xmlns + "SubTotal", total[a]),
+                                new XElement(xmlns + "MontoTotalLinea", total[a])));
+
+
+
+                }
+
+
+            }
+
+            raiz.Add(DetalleServicio);
+            double totalGR = 0;
+            double totalEX = 0;
+            double totalIM = 0;
+            for (int a = 0; a < tipoProducto.Count; a++)
+            {
+                if (tipoProducto[a].Equals("GR"))
+                {
+                    totalGR = totalGR + double.Parse(total[a]) - (double.Parse(total[a]) * 0.115);
+                    totalIM = totalIM + ((double.Parse(precioProducto[a]) - (double.Parse(precioProducto[a]) * 0.115)) * 0.13);
+                }
+                else
+                {
+                    totalEX = totalEX + double.Parse(total[a]);
+                }
+
+            }
+
+            XElement ResumenFactura = new XElement(xmlns + "ResumenFactura",
+                                          new XElement(xmlns + "CodigoMoneda", "CRC"),
+                                          new XElement(xmlns + "TipoCambio", "562.00"),
+                                          new XElement(xmlns + "TotalServGravados", "0"),
+                                          new XElement(xmlns + "TotalServExentos", "0.00"),
+                                          new XElement(xmlns + "TotalMercanciasGravadas", totalGR.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalMercanciasExentas", totalEX),
+                                          new XElement(xmlns + "TotalGravado", totalGR.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalExento", totalEX),
+                                          new XElement(xmlns + "TotalVenta", (totalEX + totalGR).ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalDescuentos", "0"),
+                                          new XElement(xmlns + "TotalVentaNeta", (totalEX + totalGR).ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalImpuesto", totalIM.ToString("00.00", CultureInfo.InvariantCulture)),
+                                          new XElement(xmlns + "TotalComprobante", (totalEX + totalGR + totalIM).ToString("00.00", CultureInfo.InvariantCulture)));
+            raiz.Add(ResumenFactura);
+
+            XElement Normativa = new XElement(xmlns + "Normativa",
+                                    new XElement(xmlns + "NumeroResolucion", "DGT-R-48-2016"),
+                                    new XElement(xmlns + "FechaResolucion", "07-10-2016 00:00:00"));
+            raiz.Add(Normativa);
+
+            XElement Otros = new XElement(xmlns + "Otros",
+                        new XElement(xmlns + "OtroTexto", "N.A."));
+            raiz.Add(Otros);
+
+
+            doc.Add(raiz);
+
+            String pathFactura = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLSinFirma\FacturaSF" + Dclave["consecutivo"] + ".xml";
+            doc.Save(pathFactura);
+
+            CapaLogica.gestor objG = new gestor();
+            String XMLFirmado = firmadoFactura(pathFactura, Dclave["consecutivo"]);
+
+            String XMLCodificado = XMLtoBase64(XMLFirmado);
+
+            envioTiqueteXML(XMLCodificado, objG.optenerToken(), Clave, thisDay.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+            ConsultaEstatus(Clave, objG.optenerToken(), Dclave["consecutivo"]);
+
+            String pathMensaje = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLMensajeHacienda\MensaHacienda" + Dclave["consecutivo"] + ".xml";
+            String FacturaFirmada = @"C:\Program Files (x86)\GPD Soluciones\Ace Super Market\XML\XMLFirmados\FacturaCF" + Dclave["consecutivo"] + ".xml";
+
+
+            String pathPDF = generarPDF(Clave, Dclave["consecutivo"], Dcliente, precioProducto, cantidad, total, nombreProducto, tipoProducto);
+
+        }
+
+        static async void envioTiqueteXML(String xmlcodificado, String token, String Clave, String fecha)
+        {
+
+            string URL_RECEPCION = "https://api.comprobanteselectronicos.go.cr/recepcion/v1/";
+
+            HttpClient http = new HttpClient();
+            Newtonsoft.Json.Linq.JObject JsonObject = new Newtonsoft.Json.Linq.JObject();
+            JsonObject.Add(new JProperty("clave", Clave));
+            JsonObject.Add(new JProperty("fecha", fecha));
+            JsonObject.Add(new JProperty("emisor",
+                                         new JObject(new JProperty("tipoIdentificacion", "02"),
+                                                     new JProperty("numeroIdentificacion", "3101769387"))));
+
+            JsonObject.Add(new JProperty("comprobanteXml", xmlcodificado));
+
+
+
+            StringContent oString = new StringContent(JsonObject.ToString());
+
+            http.DefaultRequestHeaders.Add("Authorization", ("Bearer " + token));
+
+            HttpResponseMessage response = http.PostAsync((URL_RECEPCION + "recepcion"), oString).Result;
+            string res = await response.Content.ReadAsStringAsync();
+
+            object Localizacion = response.StatusCode;
+
+
+
+            http = new HttpClient();
+            http.DefaultRequestHeaders.Add("authorization", ("Bearer " + token));
+            response = http.GetAsync((URL_RECEPCION + ("recepcion/" + Clave))).Result;
+            res = await response.Content.ReadAsStringAsync();
+            String a = res;
+
+            CapaLogica.RespuestaHacienda RH = Newtonsoft.Json.JsonConvert.DeserializeObject<CapaLogica.RespuestaHacienda>(a);
+
+            JObject json = JObject.Parse(res);
+
+        }
+    }
+}

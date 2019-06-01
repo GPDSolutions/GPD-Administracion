@@ -1,0 +1,94 @@
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Ace Super Market.exe.config
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Ace Super Market.exe.manifest
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Ace Super Market.application
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Ace Super Market.exe
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Ace Super Market.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportSource.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.Shared.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.Windows.Forms.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\FlashControlV71.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\MySql.Data.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\ShockwaveFlashObjects.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\stdole.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.csprojResolveAssemblyReference.cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.csproj.ResolveComReference.cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Cambiar_Password.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Crear_Cliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Crear_Usuario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Ingresar_Productos.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Ingresar_Venta.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Listado_Productos.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Login.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuAjustes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuCliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuInventario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuVenta.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Modificar_Producto.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Modificar_Usuario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Principal.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.VisualizacionFactura.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.Properties.Resources.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.csproj.GenerateResource.Cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.exe.manifest
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.application
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.exe
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace Super Market.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Listar_Clientes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Modificar_Cliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\MySqlBackup.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuReportes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Pruebas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Visualizador_Reportes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Auth.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Core.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Drive.v3.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.PlatformServices.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Protobuf.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Auth.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Auth.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Core.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Core.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Drive.v3.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Apis.Drive.v3.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Protobuf.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Google.Protobuf.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\MySql.Data.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.MenuFinanzas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Salida_Dinero.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Entrada_Dinero.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Listado_Finanzas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Nota_Credito.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Debug\Ace_Super_Market.CapaPresentacionLocal.Factutas_Electronicas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\RestSharp.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\RestSharp.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\FirmaXadesNet.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\Microsoft.Xades.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\signum.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.IO.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.Runtime.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\itextsharp.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Debug\itextsharp.xml

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="Ace_Super_Market.Properties.Settings.acedbConnectionString"
+            connectionString="User Id=root;Password=toor;Host=localhost;Database=acedb"
+            providerName="Devart.Data.MySql" />
+        <add name="Ace_Super_Market.Properties.Settings.ConnectionString"
+            connectionString="Dsn=mysql-Interno;uid=root;pwd=toor" providerName="System.Data.Odbc" />
+    </connectionStrings>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+    </startup>
+</configuration>

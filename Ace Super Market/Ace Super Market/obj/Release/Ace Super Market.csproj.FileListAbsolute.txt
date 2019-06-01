@@ -1,0 +1,94 @@
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Ace Super Market.exe.config
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Ace Super Market.exe.manifest
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Ace Super Market.application
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Ace Super Market.exe
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Ace Super Market.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportSource.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.Shared.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\stdole.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Ingresar_Productos.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Ingresar_Venta.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Login.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuVenta.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuInventario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Principal.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.Properties.Resources.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.csproj.GenerateResource.Cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.exe.manifest
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.application
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.exe
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Cambiar_Password.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Crear_Usuario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuAjustes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Modificar_Usuario.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\CrystalDecisions.Windows.Forms.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\FlashControlV71.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\ShockwaveFlashObjects.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Crear_Cliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuCliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.VisualizacionFactura.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Listado_Productos.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Modificar_Producto.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.csproj.ResolveComReference.cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\MySql.Data.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Listar_Clientes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Modificar_Cliente.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\MySqlBackup.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuReportes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Pruebas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Visualizador_Reportes.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Auth.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Auth.PlatformServices.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Core.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Drive.v3.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.PlatformServices.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Protobuf.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Newtonsoft.Json.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Auth.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Auth.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Core.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Core.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Drive.v3.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Apis.Drive.v3.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Protobuf.pdb
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Google.Protobuf.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\MySql.Data.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Newtonsoft.Json.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.MenuFinanzas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Salida_Dinero.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Entrada_Dinero.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Listado_Finanzas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Nota_Credito.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\BouncyCastle.Crypto.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\FirmaXadesNet.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\Microsoft.Xades.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\RestSharp.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\signum.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.IO.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.Runtime.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.Security.Cryptography.Algorithms.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.Security.Cryptography.Encoding.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.Security.Cryptography.Primitives.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\RestSharp.xml
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace_Super_Market.CapaPresentacionLocal.Factutas_Electronicas.resources
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\obj\Release\Ace Super Market.csprojResolveAssemblyReference.cache
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\itextsharp.dll
+C:\Users\Greivin\Documents\Visual Studio 2017\Projects\Ace Super Market\Ace Super Market\bin\Release\itextsharp.xml
